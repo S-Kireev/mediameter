@@ -4,10 +4,15 @@ from .config import settings
 from .models import Base, APIKey, Person
 
 # Создание engine
+import os
+
+# Получить DATABASE_URL напрямую из окружения, игнорируя settings
+database_url = os.getenv("DATABASE_URL", "sqlite:///./mediameter.db")
+
 engine = create_engine(
-    settings.database_url,
-    connect_args={"check_same_thread": False} if "sqlite" in settings.database_url else {},
-    echo=settings.debug,
+    database_url,
+    connect_args={"check_same_thread": False} if "sqlite" in database_url else {},
+    echo=os.getenv("DEBUG", "False").lower() == "true",
     pool_pre_ping=True,
 )
 

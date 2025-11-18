@@ -1,14 +1,12 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
-from .config import settings
 from .models import Base, APIKey, Person
 
-# Создание engine
-import os
-
-# Получить DATABASE_URL напрямую из окружения, игнорируя settings
+# Получить DATABASE_URL напрямую из окружения
 database_url = os.getenv("DATABASE_URL", "sqlite:///./mediameter.db")
 
+# Создание engine
 engine = create_engine(
     database_url,
     connect_args={"check_same_thread": False} if "sqlite" in database_url else {},

@@ -7,21 +7,21 @@ class Settings(BaseSettings):
     """Настройки приложения из .env"""
     
     # Database
-    database_url: str = "sqlite:///./mediameter.db"
+    database_url: str = os.getenv("DATABASE_URL", "sqlite:///./mediameter.db")
     
     # API
-    api_key: str = "dev_key_change_in_prod"
-    secret_key: str = "dev_secret_change_in_prod"
+    api_key: str = os.getenv("API_KEY", "dev_key_change_in_prod")
+    secret_key: str = os.getenv("SECRET_KEY", "dev_secret_change_in_prod")
     
     # OpenAI
     OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
     
-    # Redis
-    redis_url: str = "redis://localhost:6379/0"
+    # Redis (опционально)
+    redis_url: str = os.getenv("REDIS_URL", "redis://localhost:6379/0")
     
     # App
     timezone: str = "Europe/Kyiv"
-    debug: bool = False
+    debug: bool = os.getenv("DEBUG", "False").lower() == "true"
     
     # CORS
     cors_origins: list = ["*"]

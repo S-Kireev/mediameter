@@ -1,0 +1,3 @@
+"""
+MediaMeter Frontend Package
+"""

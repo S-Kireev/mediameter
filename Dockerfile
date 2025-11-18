@@ -17,7 +17,7 @@ COPY . .
 
 # Переменные окружения по умолчанию
 ENV PYTHONUNBUFFERED=1
-ENV DATABASE_URL=postgresql://user:password@localhost/mediameter
+ENV DATABASE_URL=sqlite:///./mediameter.db
 
 # Команда по умолчанию - запуск Backend
 CMD ["python", "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]

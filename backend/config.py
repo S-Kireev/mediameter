@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     secret_key: str = "dev_secret_change_in_prod"
     
     # OpenAI
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
     
     # Redis
     redis_url: str = "redis://localhost:6379/0"
